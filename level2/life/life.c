@@ -16,7 +16,7 @@ int count_neighbour(char *board, int x, int y)
 			nx = x + dx;
 			ny = y + dy;
 
-			if(nx >= 0 && nx < g_width && ny >= 0 && ny < g_width && board[ny * g_width + nx])
+			if(nx >= 0 && nx < g_width && ny >= 0 && ny < g_height && board[ny * g_width + nx])
 				count++;
 		}
 	}
