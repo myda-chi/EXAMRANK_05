@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <sstream>
-
+#include <algorithm>
 class bigint
 {
 private:
