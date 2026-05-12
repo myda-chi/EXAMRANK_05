@@ -29,30 +29,19 @@ bigint::bigint(int num)
 bigint bigint::operator+(const bigint& num) const
 {
     bigint res;
-    std::string a = this->_str;
-    std::string b = num._str;
-
-    while(a.length() < b.length())
-        a.insert(0, 1, '0');
-    while(b.length() < a.length())
-        b.insert(0, 1, '0');
-
+    int i = _str.size() - 1;
+    int j = num.str.size() - 1;
     int carry = 0;
-    int temp;
-    std::string sum;
-
-    for(int i = a.length()-1; i>=0; i--)
-    {
-        temp = (a[i] - '0') + (b[i] - '0') + carry;
-        sum.insert(0, 1, (temp % 10) + '0');
-
-        carry = temp / 10;
-    }
-    if (carry)
-        sum.insert(0, 1, carry + '0');
     
-    size_t check = sum.find_first_not_of('0');
-    res._str = (std::string::npos == check) ? "0" : sum.substr(check);
+    while(i >= 0|| j>=0 || carry)
+    { 
+        int sum = carry;
+        if(i >=0) sum += _str[i--] - '0';
+        if(j >= 0) sum += num._str[j--] - '0';
+        res._str += sum % 10 + '0';
+        carry = sum / 10;
+        std::reserve(res._str.begin(), res._str.end());
+    }
     return(res);
 }
 
